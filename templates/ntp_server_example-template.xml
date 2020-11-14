@@ -1,0 +1,92 @@
+<config-template xmlns="http://tail-f.com/ns/config/1.0"
+                 servicepoint="ntp_server_example">
+  <devices xmlns="http://tail-f.com/ns/ncs">
+      <?foreach {/endpoint}?>
+      <?set NTP_DEVICE={ntp-device}?>
+      <?set NTP_REGION={region}?>
+    <device>
+      <name>{$NTP_DEVICE}</name>
+      <config>
+        <!--
+        AMER NTP Servers
+        -->
+        <?if {contains($NTP_REGION, 'AMER')}?>
+          <ntp xmlns="urn:ios">
+            <server>
+              <peer-list>
+                <name>10.20.30.40</name>
+              </peer-list>
+            </server>
+          </ntp>
+
+          <ntp xmlns="http://tail-f.com/ned/cisco-ios-xr">
+            <server>
+              <server-list>
+                <name>10.20.30.40</name>
+              </server-list>
+            </server>
+          </ntp>
+          
+          <ntp xmlns="http://tail-f.com/ned/cisco-nx">
+            <server>
+              <id>10.20.30.40</id>
+            </server>
+          </ntp>
+         <?end?> <!-- end if -->
+        <!--
+        APJC NTP Servers
+        -->
+        <?if {contains($NTP_REGION, 'APJC')}?>
+          <ntp xmlns="urn:ios">
+            <server>
+              <peer-list>
+                <name>172.20.30.50</name>
+              </peer-list>
+            </server>
+          </ntp>
+
+          <ntp xmlns="http://tail-f.com/ned/cisco-ios-xr">
+            <server>
+              <server-list>
+                <name>172.20.30.50</name>
+              </server-list>
+            </server>
+          </ntp>
+          
+          <ntp xmlns="http://tail-f.com/ned/cisco-nx">
+            <server>
+              <id>172.20.30.50</id>
+            </server>
+          </ntp>
+         <?end?> <!-- end if -->
+        <!--
+        EMEA NTP Servers
+        -->
+        <?if {contains($NTP_REGION, 'EMEA')}?>
+          <ntp xmlns="urn:ios">
+            <server>
+              <peer-list>
+                <name>192.20.30.60</name>
+              </peer-list>
+            </server>
+          </ntp>
+          
+          <ntp xmlns="http://tail-f.com/ned/cisco-ios-xr">
+            <server>
+              <server-list>
+                <name>192.20.30.60</name>
+              </server-list>
+            </server>
+          </ntp>
+
+          <ntp xmlns="http://tail-f.com/ned/cisco-nx">
+            <server>
+              <id>192.20.30.60</id>
+            </server>
+          </ntp>
+         <?end?> <!-- end if -->
+      </config>
+    </device>
+    <?end?> <!-- end foreach {/endpoint} -->
+  </devices>
+</config-template>

@@ -1,0 +1,61 @@
+module ntp_server_example {
+  namespace "http://com/example/ntp_server_example";
+  prefix ntp_server_example;
+
+  import ietf-inet-types {
+    prefix inet;
+  }
+  import tailf-ncs {
+    prefix ncs;
+  }
+  import tailf-common {
+    prefix tailf;
+  }
+
+  list ntp_server_example {
+    key name;
+
+    uses ncs:service-data;
+    ncs:servicepoint "ntp_server_example";
+
+    leaf name {
+      type string;
+    }
+
+   list endpoint {
+        key "id";
+        leaf id{
+          tailf:info "Endpoint identifier";
+          type string;
+        }
+        leaf ntp-device {
+          mandatory true;
+          type leafref {
+            path "/ncs:devices/ncs:device/ncs:name";
+          }
+        }
+        leaf region {
+          type enumeration {
+            enum "AMER";
+            enum "APJC";
+            enum "EMEA";
+          }
+        }
+
+
+      }
+
+
+    // // may replace this with other ways of refering to the devices.
+    // leaf-list device {
+    //   type leafref {
+    //     path "/ncs:devices/ncs:device/ncs:name";
+    //   }
+    // }
+
+    // // replace with your own stuff here
+    // leaf dummy {
+    //   type empty;
+    // }
+  }
+}
