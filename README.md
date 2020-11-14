@@ -398,5 +398,5 @@ The template looks like as follows:
 
 I used the XPATH function `contains()` to check to see if the region was one of our three options. You can see common XPATH functions [here](https://developer.mozilla.org/en-US/docs/Web/XPath/Functions). If you look at the sample output in this README above, you will notice that the first commit dry run does not include a region on purpose, to show you that the check is working and no config is created. 
 
-Related to this discussion be careful of using a list key as a conditional check, (see this discussion] (https://community.cisco.com/t5/nso-developer-hub-discussions/conditional-quot-if-quot-statement-is-not-working-as-expected/td-p/4019274)
+Related to this discussion be careful of using a list key as a conditional check, [see this discussion] (https://community.cisco.com/t5/nso-developer-hub-discussions/conditional-quot-if-quot-statement-is-not-working-as-expected/td-p/4019274)
 
